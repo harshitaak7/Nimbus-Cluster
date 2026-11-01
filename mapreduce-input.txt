@@ -1,3 +1,0 @@
-distributed systems scale by coordinating independent nodes
-replication improves availability and durability
-mapreduce divides work before reducing the results
