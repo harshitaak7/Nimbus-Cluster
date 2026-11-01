@@ -5,8 +5,9 @@ export async function GET() {
     return Response.json({ ok: true, database: "not configured" });
   }
   try {
-    const [{ db }, { sql }] = await Promise.all([import("@/db"), import("drizzle-orm")]);
+    const [{ db, ensureDatabaseSchema }, { sql }] = await Promise.all([import("@/db"), import("drizzle-orm")]);
     await db.execute(sql`select 1`);
+    await ensureDatabaseSchema();
     return Response.json({ ok: true, database: "ready" });
   } catch (e) {
     return Response.json(
